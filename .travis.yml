@@ -3,3 +3,11 @@ scala:
 - 2.12.2
 jdk:
 - oraclejdk8
+deploy:
+  provider: heroku
+  api_key:
+    secure: bkJ2s7D4HpmfPelJPQanbkM7uDlVZO28tN2/qDuS0Tpv+sEhNHpPoUqtfLsKfTnG57pZB3ZBzl3E+TvRZ7i8vN86i4/auPLAAGMDOkhtHUJ9mEjcuGTjbsD7F1GlrS6JBiPMWeCDkvby3w6PV4qWQQng0jCYQU1G0sAybCTE5OTZZJROIc0fsfNblix3lXAGSy4VlbH7mdmgGNpgj3kGnDlUEKOn6iXOlzPd0mzSV2tf0z8uBFJHgM2buti8a0QTjzv82i+Ixq2Capn/x+xvv2oIf21ilOz53PA1qKH35X/tgNxq1NvLHO01KKOzswljxhfCapuTUS9VMN2T5ICnVr0LiKrXs1R7Z2lfKLUx2v1SWrFWyKF2aDTqrb+GRd0Y3HVc+A/BVPhLii9UpqcqE4RlwuEH/MXZjdlXSnKNHlEKIv43weBs86Foe8PC/rhht2w3ixee7+Y7swUFW251uomotaRUKGd620d1BPDaLmkPS7LJt6DcATQqegy+YzBHzwmB8eCU9j+31pjdasJBMI5s6LnO3zfjtQM6IeWigIwjO+lZd8gsWfOQg2b1hu4e36cg7aCYC1CTGn5liBGB+Hh+mkVKLuILLs1l1843/YlvZnn5tehSRqim6FuJf3Eial0cPvFrAmPRgVl0M3vhFfo6Y8gWMvC6LiBjkzujfCk=
+  app: stepney-volunteers-staging
+  on:
+    repo: stepneybankstables/StepneyVolunteers
+    
