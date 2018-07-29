@@ -1,0 +1,21 @@
+@()
+
+@main("Welcome to Play") {
+<div>
+    <h1>Welcome!</h1>
+    <h2>Never visited before?</h2>
+    <p>Please go to reception, where we will be happy to welcome you.</p>
+
+    <div style="text-align: center;">
+
+        <form action="@controllers.routes.HomeController.index()" method="get">
+            <button class="btn btn-welcome">I'm arriving</button>
+        </form>
+
+        <form action="@controllers.routes.HomeController.index()" method="get">
+            <button class="btn btn-welcome">I'm leaving</button>
+        </form>
+
+    </div>
+</div>
+}
