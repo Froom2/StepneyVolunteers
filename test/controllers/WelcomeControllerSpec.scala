@@ -15,7 +15,7 @@ class WelcomeControllerSpec extends PlaySpec with GuiceOneAppPerTest {
 
       status(home) mustBe OK
       contentType(home) mustBe Some("text/html")
-      contentAsString(home) must include ("Welcome to Stepney Bank Stables!")
+      contentAsString(home) must include ("Welcome!")
     }
   }
 
