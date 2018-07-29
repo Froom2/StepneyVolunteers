@@ -1,0 +1,13 @@
+language: scala
+scala:
+- 2.12.2
+jdk:
+- oraclejdk8
+deploy:
+  provider: heroku
+  api_key:
+    secure:
+  app: stepney-volunteers-staging
+  on:
+    repo: stepneybankstables/StepneyVolunteers
+    
