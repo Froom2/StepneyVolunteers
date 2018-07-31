@@ -7,11 +7,13 @@ import play.api.test.Helpers._
 
 class WelcomeControllerSpec extends PlaySpec with GuiceOneAppPerTest {
 
+  def controller = new WelcomeController(stubControllerComponents())
+
   "WelcomeController" should {
     "respond with OK" in {
 
       val request = FakeRequest(GET, "/welcome")
-      val home = route(app, request).get
+      val home = controller.welcome().apply(FakeRequest(GET, "/"))
 
       status(home) mustBe OK
       contentType(home) mustBe Some("text/html")
