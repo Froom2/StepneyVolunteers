@@ -1,1 +1,1 @@
-web: target/universal/stage/bin/stepneyvolunteers -Dhttp.port=${PORT}
+web: target/universal/stage/bin/stepneyvolunteers -Dhttp.port=$PORT
