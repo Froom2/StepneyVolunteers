@@ -1,44 +1,22 @@
 package views
 
-import org.scalatest.matchers.{MatchResult, Matcher}
+import org.jsoup.Jsoup
 import org.scalatestplus.play.PlaySpec
-import org.jsoup.nodes.{Attributes, Document, Element}
-import org.jsoup.select.Elements
-import org.scalatest.matchers.{MatchResult, Matcher}
+import testUtil.TestHelpers.checkElement
 
 class welcomeSpec extends PlaySpec {
 
   "welcome view" should {
     "contain correct content" in {
 
+      val view = Jsoup.parse(views.html.welcome().toString)
 
+      checkElement(view, "h1", 1, "Welcome!")
+      checkElement(view, "h2", 1, "Never visited before?")
+      checkElement(view, "p", 1, "Please go to reception, where we will be happy to welcome you.")
+      checkElement(view, "button", 2, "I'm arriving I'm leaving")
 
     }
   }
-
-
-
-}
-
-trait JsoupMatchers {
-
-  class TagWithTextMatcher(expectedContent: String, tag: String) extends Matcher[Document] {
-    def apply(left: Document): MatchResult = {
-      val elements: List[String] =
-        left.getElementsByTag(tag)
-          .toList
-          .map(_.text)
-
-      lazy val elementContents = elements.mkString("\t", "\n\t", "")
-
-      MatchResult(
-        elements.contains(expectedContent),
-        s"[$expectedContent] not found in '$tag' elements:[\n$elementContents]",
-        s"'$tag' element found with text [$expectedContent]"
-      )
-    }
-  }
-
-  def haveHeadingWithText (expectedText: String) = new TagWithTextMatcher(expectedText, "h1")
 
 }
