@@ -6,7 +6,7 @@
 <div class="container">
     @months.map{month =>
         <div class="months">
-            <form action="@controllers.arrival.routes.ArrivalController.selectArrivalMonth(month)" method="get">
+            <form action="@controllers.arrival.routes.ArrivalController.arrivalDay(month)" method="get">
             <button class="btn btn-month">@month</button>
             </form>
         </div>

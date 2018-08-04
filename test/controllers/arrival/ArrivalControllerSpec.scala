@@ -28,15 +28,31 @@ class ArrivalControllerSpec extends PlaySpec with GuiceOneAppPerTest with Proper
           month =>
             val result = controller.selectArrivalMonth(month).apply(FakeRequest(GET, "/"))
             status(result) mustBe SEE_OTHER
+            redirectLocation(result) mustBe Some(controllers.arrival.routes.ArrivalController.arrivalDay(month).url)
         }
       }
     }
 
     "arrivalDay is called" must {
       "respond with OK" in {
-        val result = controller.arrivalDay().apply(FakeRequest(GET, "/"))
-        status(result) mustBe OK
-        contentType(result) mustBe Some("text/html")
+        val monthGenerator = Gen.oneOf(TimeService.months)
+        forAll(monthGenerator) {
+          month =>
+            val result = controller.arrivalDay(month).apply(FakeRequest(GET, "/"))
+            status(result) mustBe OK
+            contentType(result) mustBe Some("text/html")
+        }
+      }
+    }
+    "selectArrivalDay is called" must {
+      "respond with OK" in {
+        val dayGenerator = Gen.oneOf(1 to 31)
+        forAll(dayGenerator) {
+          day =>
+            val result = controller.selectArrivalDay(day).apply(FakeRequest(GET, "/"))
+            status(result) mustBe SEE_OTHER
+            redirectLocation(result) mustBe Some(controllers.routes.WelcomeController.welcome.url)
+        }
       }
     }
   }
