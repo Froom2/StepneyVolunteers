@@ -2,6 +2,7 @@ package controllers.arrival
 
 import javax.inject.Inject
 
+import models.VisitPurpose
 import play.api.mvc.{AbstractController, AnyContent, ControllerComponents, Request}
 import services.TimeService
 
@@ -25,6 +26,10 @@ class ArrivalController @Inject()(cc: ControllerComponents) extends AbstractCont
 
   def arrivalPurpose() = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.arrival.arrival_purpose())
+  }
+
+  def selectArrivalPurpose(purpose: VisitPurpose) = Action { implicit request: Request[AnyContent] =>
+    Redirect(controllers.routes.WelcomeController.welcome())
   }
 
 }

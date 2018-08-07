@@ -1,12 +1,11 @@
 package views.arrival
 
-import models.{JustVisiting, Riding, Volunteering}
+import models.VisitPurpose.{JustVisiting, Riding, Volunteering}
 import org.jsoup.Jsoup
 import org.scalatestplus.play.PlaySpec
-import play.api.test.FakeRequest
-import services.TimeService
-import testUtil.TestHelpers.checkElement
 import play.api.test.CSRFTokenHelper._
+import play.api.test.FakeRequest
+import testUtil.TestHelpers.checkElement
 
 class arrival_purposeSpec extends PlaySpec {
 

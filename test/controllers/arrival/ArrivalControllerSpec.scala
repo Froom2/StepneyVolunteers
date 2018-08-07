@@ -1,5 +1,6 @@
 package controllers.arrival
 
+import models.VisitPurpose.{JustVisiting, Riding, Volunteering}
 import org.scalacheck.Gen
 import org.scalatest.prop.PropertyChecks
 import org.scalatestplus.play.PlaySpec
@@ -62,6 +63,17 @@ class ArrivalControllerSpec extends PlaySpec with GuiceOneAppPerTest with Proper
         val result = controller.arrivalPurpose().apply(FakeRequest(GET, "/").withCSRFToken)
         status(result) mustBe OK
         contentType(result) mustBe Some("text/html")
+      }
+    }
+    "selectArrivalPurpose is called" must {
+      "respond with SEE_OTHER" in {
+        val purposeGenerator = Gen.oneOf(Seq(Volunteering, Riding, JustVisiting))
+        forAll(purposeGenerator) {
+          purpose =>
+            val result = controller.selectArrivalPurpose(purpose).apply(FakeRequest(POST, "/").withCSRFToken)
+            status(result) mustBe SEE_OTHER
+            redirectLocation(result) mustBe Some(controllers.routes.WelcomeController.welcome().url)
+        }
       }
     }
   }

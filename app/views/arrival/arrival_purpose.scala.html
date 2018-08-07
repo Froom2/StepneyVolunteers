@@ -1,4 +1,5 @@
-@import models.{JustVisiting, Riding, Volunteering}
+@import models.VisitPurpose
+@import helper._
 
 @()(implicit request: RequestHeader)
 
@@ -6,14 +7,20 @@
     <h1>Why are you visiting today?</h1>
 
     <div style="text-align: center;">
-        <button class="btn btn-reason">
-            Volunteering
-        </button>
-        <button class="btn btn-reason">
-            Riding
-        </button>
-        <button class="btn btn-reason">
-            JustVisiting
-        </button>
+        @form(CSRF(controllers.arrival.routes.ArrivalController.selectArrivalPurpose(VisitPurpose.Volunteering))){
+            <button class="btn btn-reason">
+                Volunteering
+            </button>
+        }
+        @form(CSRF(controllers.arrival.routes.ArrivalController.selectArrivalPurpose(VisitPurpose.Riding))){
+            <button class="btn btn-reason">
+                Riding
+            </button>
+        }
+        @form(CSRF(controllers.arrival.routes.ArrivalController.selectArrivalPurpose(VisitPurpose.JustVisiting))){
+            <button class="btn btn-reason">
+                JustVisiting
+            </button>
+        }
     </div>
 }
