@@ -7,6 +7,7 @@ import org.scalatestplus.play.guice.GuiceOneAppPerTest
 import play.api.test.FakeRequest
 import play.api.test.Helpers._
 import services.TimeService
+import play.api.test.CSRFTokenHelper._
 
 class ArrivalControllerSpec extends PlaySpec with GuiceOneAppPerTest with PropertyChecks {
 
@@ -16,7 +17,7 @@ class ArrivalControllerSpec extends PlaySpec with GuiceOneAppPerTest with Proper
 
     "arrivalMonth is called" must {
       "respond with OK" in {
-        val result = controller.arrivalMonth().apply(FakeRequest(GET, "/"))
+        val result = controller.arrivalMonth().apply(FakeRequest(GET, "/").withCSRFToken)
         status(result) mustBe OK
         contentType(result) mustBe Some("text/html")
       }
@@ -26,7 +27,7 @@ class ArrivalControllerSpec extends PlaySpec with GuiceOneAppPerTest with Proper
         val monthGenerator = Gen.oneOf(TimeService.months)
         forAll(monthGenerator) {
           month =>
-            val result = controller.selectArrivalMonth(month).apply(FakeRequest(GET, "/"))
+            val result = controller.selectArrivalMonth(month).apply(FakeRequest(POST, "/").withCSRFToken)
             status(result) mustBe SEE_OTHER
             redirectLocation(result) mustBe Some(controllers.arrival.routes.ArrivalController.arrivalDay(month).url)
         }
@@ -38,7 +39,7 @@ class ArrivalControllerSpec extends PlaySpec with GuiceOneAppPerTest with Proper
         val monthGenerator = Gen.oneOf(TimeService.months)
         forAll(monthGenerator) {
           month =>
-            val result = controller.arrivalDay(month).apply(FakeRequest(GET, "/"))
+            val result = controller.arrivalDay(month).apply(FakeRequest(GET, "/").withCSRFToken)
             status(result) mustBe OK
             contentType(result) mustBe Some("text/html")
         }
@@ -49,7 +50,7 @@ class ArrivalControllerSpec extends PlaySpec with GuiceOneAppPerTest with Proper
         val dayGenerator = Gen.oneOf(1 to 31)
         forAll(dayGenerator) {
           day =>
-            val result = controller.selectArrivalDay(day).apply(FakeRequest(GET, "/"))
+            val result = controller.selectArrivalDay(day).apply(FakeRequest(POST, "/").withCSRFToken)
             status(result) mustBe SEE_OTHER
             redirectLocation(result) mustBe Some(controllers.routes.WelcomeController.welcome.url)
         }

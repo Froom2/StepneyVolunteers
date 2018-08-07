@@ -4,6 +4,8 @@ import org.jsoup.Jsoup
 import org.scalatestplus.play.PlaySpec
 import services.TimeService
 import testUtil.TestHelpers.checkElement
+import play.api.test.FakeRequest
+import play.api.test.CSRFTokenHelper._
 
 
 class arrival_daySpec extends PlaySpec {
@@ -14,7 +16,7 @@ class arrival_daySpec extends PlaySpec {
       def checkDayView(month: String) = {
         val days = TimeService.daysInMonth(month)
         val view = Jsoup.parse(views.html.arrival.arrival_day(
-          days, month).toString)
+          days)(FakeRequest().withCSRFToken).toString)
 
         checkElement(view, "h1", 1, "What day were you born on?")
         checkElement(view, "button", days.max, "1 2 3 4")
