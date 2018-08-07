@@ -12,7 +12,6 @@ class ArrivalController @Inject()(cc: ControllerComponents) extends AbstractCont
   }
 
   def selectArrivalMonth(month: String) = Action { implicit request: Request[AnyContent] =>
-    println("month")
     Redirect(controllers.arrival.routes.ArrivalController.arrivalDay(month))
   }
 
@@ -21,8 +20,11 @@ class ArrivalController @Inject()(cc: ControllerComponents) extends AbstractCont
   }
 
   def selectArrivalDay(day: Int) = Action { implicit request: Request[AnyContent] =>
-    println("***** " + day)
-    Redirect(controllers.routes.WelcomeController.welcome())
+    Redirect(controllers.arrival.routes.ArrivalController.arrivalPurpose)
+  }
+
+  def arrivalPurpose() = Action { implicit request: Request[AnyContent] =>
+    Ok(views.html.arrival.arrival_purpose())
   }
 
 }

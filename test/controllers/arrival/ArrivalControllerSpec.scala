@@ -46,14 +46,22 @@ class ArrivalControllerSpec extends PlaySpec with GuiceOneAppPerTest with Proper
       }
     }
     "selectArrivalDay is called" must {
-      "respond with OK" in {
+      "respond with SEE_OTHER" in {
         val dayGenerator = Gen.oneOf(1 to 31)
         forAll(dayGenerator) {
           day =>
             val result = controller.selectArrivalDay(day).apply(FakeRequest(POST, "/").withCSRFToken)
             status(result) mustBe SEE_OTHER
-            redirectLocation(result) mustBe Some(controllers.routes.WelcomeController.welcome.url)
+            redirectLocation(result) mustBe Some(controllers.arrival.routes.ArrivalController.arrivalPurpose.url)
         }
+      }
+    }
+
+    "arrivalPurpose is called" must {
+      "respond with OK" in {
+        val result = controller.arrivalPurpose().apply(FakeRequest(GET, "/").withCSRFToken)
+        status(result) mustBe OK
+        contentType(result) mustBe Some("text/html")
       }
     }
   }

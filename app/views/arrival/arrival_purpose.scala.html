@@ -1,0 +1,19 @@
+@import models.{JustVisiting, Riding, Volunteering}
+
+@()(implicit request: RequestHeader)
+
+@main("Welcome to Play") {
+    <h1>Why are you visiting today?</h1>
+
+    <div style="text-align: center;">
+        <button class="btn btn-reason">
+            Volunteering
+        </button>
+        <button class="btn btn-reason">
+            Riding
+        </button>
+        <button class="btn btn-reason">
+            JustVisiting
+        </button>
+    </div>
+}
