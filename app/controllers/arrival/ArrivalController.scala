@@ -29,7 +29,7 @@ class ArrivalController @Inject()(cc: ControllerComponents) extends AbstractCont
   }
 
   def selectArrivalPurpose(purpose: VisitPurpose) = Action { implicit request: Request[AnyContent] =>
-    Redirect(controllers.routes.WelcomeController.welcome())
+    Redirect(controllers.routes.WelcomeController.thankyou())
   }
 
 }

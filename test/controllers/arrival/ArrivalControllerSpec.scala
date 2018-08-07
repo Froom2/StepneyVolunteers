@@ -72,7 +72,7 @@ class ArrivalControllerSpec extends PlaySpec with GuiceOneAppPerTest with Proper
           purpose =>
             val result = controller.selectArrivalPurpose(purpose).apply(FakeRequest(POST, "/").withCSRFToken)
             status(result) mustBe SEE_OTHER
-            redirectLocation(result) mustBe Some(controllers.routes.WelcomeController.welcome().url)
+            redirectLocation(result) mustBe Some(controllers.routes.WelcomeController.thankyou().url)
         }
       }
     }

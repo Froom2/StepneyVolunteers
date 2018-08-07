@@ -9,4 +9,8 @@ class WelcomeController @Inject()(cc: ControllerComponents) extends AbstractCont
   def welcome() = Action { implicit request: Request[AnyContent] =>
     Ok(views.html.welcome())
   }
+
+  def thankyou() = Action { implicit request: Request[AnyContent] =>
+    Ok(views.html.thankyou())
+  }
 }
