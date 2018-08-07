@@ -11,6 +11,7 @@ libraryDependencies += guice
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2" % Test
 libraryDependencies += "org.scalacheck" %% "scalacheck" % "1.13.4" % Test
 libraryDependencies += "org.jsoup" % "jsoup" % "1.11.3" % Test
+libraryDependencies += filters
 
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "com.example.controllers._"

@@ -1,13 +1,15 @@
-@(days: Seq[Int], month: String)
+@import helper._
+
+@(days: Seq[Int])(implicit request: RequestHeader)
 
 @main("Welcome to Play") {
 
 <h1>What day were you born on?</h1>
 <div class="container">
     @days.map{day =>
-    <form action="@controllers.arrival.routes.ArrivalController.selectArrivalDay(day)" method="get">
-        <button (click)="selectDay($event)" class="btn btn-day">@day</button>
-    </form>
+        @form(CSRF(controllers.arrival.routes.ArrivalController.selectArrivalDay(day))){
+            <button class="btn btn-day">@day</button>
+        }
     }
 </div>
 }
